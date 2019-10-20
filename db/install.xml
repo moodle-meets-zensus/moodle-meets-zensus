@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/external_feedback/db" VERSION="20131007"
+	COMMENT="XMLDB file for Moodle blocks/external_feedback" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+	<TABLES>
+		<TABLE NAME="block_external_feedback" COMMENT="External feedback block">
+			<FIELDS>
+				<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="userid" />
+				<FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="ext_courseid" />
+				<FIELD NAME="ext_courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="userid" NEXT="mdl_courseid" />
+				<FIELD NAME="mdl_courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="ext_courseid" NEXT="timecompleted" />
+				<FIELD NAME="timecompleted" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="mdl_courseid" />
+			</FIELDS>
+			<KEYS>
+				<KEY NAME="primary" TYPE="primary" FIELDS="id" />
+			</KEYS>
+		</TABLE>
+		<TABLE NAME="block_external_feedback_rpc" COMMENT="External feedback rpc cache. Saves the response from the external server.">
+			<FIELDS>
+				<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="mdl_courseid" />
+				<FIELD NAME="mdl_courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="ext_response" />
+				<FIELD NAME="ext_response" TYPE="text" NOTNULL="true" SEQUENCE="false" PREVIOUS="mdl_courseid" />
+			</FIELDS>
+			<KEYS>
+				<KEY NAME="primary" TYPE="primary" FIELDS="id" />
+			</KEYS>
+		</TABLE>
+	</TABLES>
+</XMLDB>
